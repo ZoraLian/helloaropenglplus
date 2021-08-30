@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
@@ -35,7 +37,7 @@ import javax.microedition.khronos.opengles.GL11;
 public class MainActivity extends AppCompatActivity {
 
     private GraphicView graphicView;
-    private float[] vertex;
+    private float vertex[];
 
 
     @Override
@@ -52,11 +54,21 @@ public class MainActivity extends AppCompatActivity {
 //        int glZSize = glZlist.size();
         int glStoreSize = glStorelist.size();
 
-        vertex = new float[6];
+        vertex = new float[glStoreSize];
 
-        for (int i = 0; i < 6; i++) {
-            vertex[i] = glStorelist.get(i);
+        for(int i = 0; i < glStoreSize; i++){
+            vertex[i] = glStorelist.get(i) * 100;
         }
+//        Log.d("ARRAYTEST", Arrays.toString(vertex));
+//        Log.d("ARRAYLISTTEST", String.valueOf(glStorelist));
+
+
+
+//        vertex = new float[glStoreSize];
+//
+//        for (int i = 0; i < 6; i++) {
+//            vertex[i] = glStorelist.get(i);
+//        }
 
 //        //Convert the arraylist back to an array
 //        Float[] arr = new Float[[glStorelist.size()];
@@ -197,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                             .getSensorList(Sensor.TYPE_ACCELEROMETER).get(0), SensorManager.SENSOR_DELAY_NORMAL);
         }
 
+
         public GraphicView(Context context) {
             super(context);
         }
@@ -205,11 +218,16 @@ public class MainActivity extends AppCompatActivity {
             super(context, attrs);
         }
 
+
+
+
         //called once
         @Override
         public void onSurfaceCreated(GL10 gl1, EGLConfig pConfig) {
             float vtx[] = vertex;
+            Log.d("ARRAYTEST", Arrays.toString(vertex));
 
+//            Log.d("TEST", vertex.toString());
             //every POINT has the same coordinates
 //            float vtx[] = {
 //                    // X,  Y, Z
@@ -367,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
             gl.glPushMatrix();
             gl.glColor4f(r, g, b, 1);
             //POINT SIZE : 用PIXEL定義該點大小
-            gl.glPointSize(50);
+            gl.glPointSize(10);
             //activate vertex array type
             gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
             //get vertices for this object id

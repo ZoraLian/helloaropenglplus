@@ -203,10 +203,10 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
     private ToggleButton toggleButton;
     private boolean toggleMode = false;
     private boolean isContinue = true;
-    private ArrayList<Float> glX = new ArrayList();
-    private ArrayList<Float> glY = new ArrayList();
-    private ArrayList<Float> glZ = new ArrayList();
-    private ArrayList<Float> glStore = new ArrayList();
+    private ArrayList<Float> glX = new ArrayList<Float>();
+    private ArrayList<Float> glY = new ArrayList<Float>();
+    private ArrayList<Float> glZ = new ArrayList<Float>();
+    private ArrayList<Float> glStore = new ArrayList<Float>();
 
 
     //region Implement View Event
