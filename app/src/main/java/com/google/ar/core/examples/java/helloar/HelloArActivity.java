@@ -262,6 +262,10 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
 
                         // 從 MainActivity 切換到 Test
 
+                        // 0830 切換ACTIVITY&傳值在這裡
+                        // 0830-2 記得先打開開關掃過環境後再切換ACTIVITY才有值
+
+
                         Intent intent = new Intent();
                         intent.setClass(HelloArActivity.this, MainActivity.class); //從哪邊切換到哪邊
 //                        intent.putExtra("X_key", glX);
@@ -891,13 +895,14 @@ public class HelloArActivity extends AppCompatActivity implements SampleRender.R
         int finalDepthWidth = depthWidth;
         int finalDepthHeight = depthHeight;
 
-        //儲存轉換完的xyz
-        glX.add(xyzw[0]);
+        //0830-3 儲存轉換完的xyz
+        glX.add(xyzw[0]); //分開存
         glY.add(xyzw[1]);
         glZ.add(xyzw[2]);
-        glStore.add(xyzw[0]);
-        glStore.add(xyzw[1]);
-        glStore.add(xyzw[2]);
+        //0830-4 合在一起存，依序將xyz存進去glStore(ArrayList)
+        glStore.add(xyzw[0]); // xyzw[0] -> x
+        glStore.add(xyzw[1]); // xyzw[1] -> y
+        glStore.add(xyzw[2]); // xyzw[2] -> z
 
 
         runOnUiThread(new Runnable() {

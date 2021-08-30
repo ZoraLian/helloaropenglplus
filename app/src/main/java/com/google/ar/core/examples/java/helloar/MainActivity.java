@@ -54,11 +54,20 @@ public class MainActivity extends AppCompatActivity {
 //        int glZSize = glZlist.size();
         int glStoreSize = glStorelist.size();
 
+        //0830 將glStorelist(ArrayList)轉成Array型態
         vertex = new float[glStoreSize];
 
         for(int i = 0; i < glStoreSize; i++){
             vertex[i] = glStorelist.get(i) * 100;
         }
+
+        //0830 vertex為Array，裡面有所有XYZ
+        //0830 vertex[0+3n] -> X座標
+        //0830 vertex[1+3n] -> Y座標
+        //0830 vertex[2+3n] -> Z座標
+
+
+
 //        Log.d("ARRAYTEST", Arrays.toString(vertex));
 //        Log.d("ARRAYLISTTEST", String.valueOf(glStorelist));
 
